@@ -26,8 +26,8 @@ type Spec struct {
 	// List of HTTP methods the handler should match.
 	Methods []string
 
-	// Path the handler should match.
-	Path string
+	// List of paths the handler should match. A separate handler will be registered for each one of them.
+	Paths []string
 
 	// Key/value pairs of specific HTTP headers the handler should match (e.g. Content-Type).
 	Headers []string

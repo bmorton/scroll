@@ -3,6 +3,8 @@
 scroll
 ======
 
+[![Build Status](http://img.shields.io/travis/mailgun/scroll/master.svg)](https://travis-ci.org/mailgun/scroll)
+
 Scroll is a lightweight library for building Go HTTP services at Mailgun.
 
 Example
@@ -38,7 +40,7 @@ func main() {
 	handlerSpec := scroll.Spec{
 
 		Methods:  []string{"GET", "POST"},
-		Path:     "/resources/{resourceID}",
+		Paths:    []string{"/resources/{resourceID}"},
 		Register: false,
 		Handler:  handler,
 	}
