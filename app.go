@@ -125,7 +125,17 @@ func (app *App) AddHandler(spec Spec) error {
 
 // GetHandler returns HTTP compatible Handler interface.
 func (app *App) GetHandler() http.Handler {
-	return app.router
+	return app.corsHandler(app.router)
+}
+
+func (app *App) corsHandler(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == "OPTIONS" {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+		} else {
+			h.ServeHTTP(w, r)
+		}
+	})
 }
 
 // SetNotFoundHandler sets the handler for the case when URL can not be matched by the router.
